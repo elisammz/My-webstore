@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "mywebstore",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authmywebstoreb1e60199",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

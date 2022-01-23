@@ -1,0 +1,160 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mywebstore-prod-204501-authRole",
+      "UnauthRoleArn": "arn:aws:iam::302038264747:role/amplify-mywebstore-prod-204501-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::302038264747:role/amplify-mywebstore-prod-204501-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-mywebstore-prod-204501-deployment",
+      "UnauthRoleName": "amplify-mywebstore-prod-204501-unauthRole",
+      "StackName": "amplify-mywebstore-prod-204501",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:302038264747:stack/amplify-mywebstore-prod-204501/93895840-7aaf-11ec-82fb-0ea30bf5e6c3",
+      "AmplifyAppId": "d6dgv6t3qdgza"
+    }
+  },
+  "auth": {
+    "mywebstoreb1e60199": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mywebstore-prod-204501-deployment/amplify-cfn-templates/auth/mywebstoreb1e60199-cloudformation-template.json",
+        "logicalId": "authmywebstoreb1e60199"
+      },
+      "lastPushTimeStamp": "2022-01-22T01:16:57.954Z",
+      "output": {
+        "UserPoolId": "ap-northeast-1_KJvoKJNSC",
+        "AppClientIDWeb": "501716nfgq4vsr85ftl28b3hbr",
+        "AppClientID": "5per1v2hov7qrrsp7m4tml2rch",
+        "IdentityPoolId": "ap-northeast-1:599b8383-c91c-4fd0-a966-808f0f89135e",
+        "UserPoolArn": "arn:aws:cognito-idp:ap-northeast-1:302038264747:userpool/ap-northeast-1_KJvoKJNSC",
+        "IdentityPoolName": "mywebstoreb1e60199_identitypool_b1e60199__prod",
+        "UserPoolName": "mywebstoreb1e60199_userpool_b1e60199"
+      },
+      "lastPushDirHash": "J/t4BlWQCUz5euQvKYP5HET8seQ="
+    }
+  },
+  "storage": {
+    "ProductsImages": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "lastPushTimeStamp": "2022-01-22T01:16:58.441Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mywebstore-prod-204501-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "logicalId": "storageProductsImages"
+      },
+      "output": {
+        "BucketName": "mywebstoreb6827106c6174062bf0100c8d1f69d90204501-prod",
+        "Region": "ap-northeast-1"
+      },
+      "lastPushDirHash": "RDKMLekG2r04w9oUHZRMSYaIn1g="
+    }
+  },
+  "function": {
+    "processPayment": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2022-01-21T13:05:10.393Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2022-01-21T13:05:10.451Z",
+      "distZipFilename": "processPayment-554e34364337656a324c-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-mywebstore-prod-204501-deployment",
+        "s3Key": "amplify-builds/processPayment-554e34364337656a324c-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mywebstore-prod-204501-deployment/amplify-cfn-templates/function/processPayment-cloudformation-template.json",
+        "logicalId": "functionprocessPayment"
+      },
+      "lastPushTimeStamp": "2022-01-22T01:16:57.959Z",
+      "output": {
+        "Region": "ap-northeast-1",
+        "Arn": "arn:aws:lambda:ap-northeast-1:302038264747:function:processPayment-prod",
+        "Name": "processPayment-prod",
+        "LambdaExecutionRole": "mywebstoreLambdaRole1718bfd1-prod"
+      },
+      "lastPushDirHash": "gLEYmWqcuygPFK9xqjp4g1rDZDw="
+    },
+    "createOrder": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2022-01-21T13:05:10.398Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2022-01-21T13:05:10.656Z",
+      "distZipFilename": "createOrder-544b5935385733494545-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-mywebstore-prod-204501-deployment",
+        "s3Key": "amplify-builds/createOrder-544b5935385733494545-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mywebstore-prod-204501-deployment/amplify-cfn-templates/function/createOrder-cloudformation-template.json",
+        "logicalId": "functioncreateOrder"
+      },
+      "lastPushTimeStamp": "2022-01-22T01:16:57.961Z",
+      "output": {
+        "Region": "ap-northeast-1",
+        "Arn": "arn:aws:lambda:ap-northeast-1:302038264747:function:createOrder-prod",
+        "Name": "createOrder-prod",
+        "LambdaExecutionRole": "mywebstoreLambdaRoleb94fd176-prod"
+      },
+      "lastPushDirHash": "YyzrL6aCtVB4I78doiBfA4FItvw="
+    }
+  },
+  "api": {
+    "mywebstore": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authmywebstoreb1e60199"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 365,
+                "apiKeyExpirationDate": "2023-01-21T12:36:03.465Z",
+                "description": "Guest user access to products"
+              }
+            }
+          ]
+        },
+        "GraphQLAPIIdOutput": "ceitkfcjtbbr3pytn4446ajmb4",
+        "GraphQLAPIEndpointOutput": "https://yya7yez47vggtbitrzpow34vc4.appsync-api.ap-northeast-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-7lvskepkljeplfzlpnyeba4sfm"
+      },
+      "lastPushTimeStamp": "2022-01-22T01:16:57.964Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mywebstore-prod-204501-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apimywebstore"
+      },
+      "lastPushDirHash": "qN5R6vXjeRUdiictp+bGhIovEQA="
+    }
+  }
+}
