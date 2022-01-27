@@ -20,9 +20,9 @@ export const createProduct = /* GraphQL */ `
       price
       orders {
         items {
+          id
           product_id
           order_id
-          id
           createdAt
           updatedAt
           customer
@@ -48,9 +48,9 @@ export const updateProduct = /* GraphQL */ `
       price
       orders {
         items {
+          id
           product_id
           order_id
-          id
           createdAt
           updatedAt
           customer
@@ -76,9 +76,9 @@ export const deleteProduct = /* GraphQL */ `
       price
       orders {
         items {
+          id
           product_id
           order_id
-          id
           createdAt
           updatedAt
           customer
@@ -96,11 +96,10 @@ export const createProductOrder = /* GraphQL */ `
     $condition: ModelProductOrderConditionInput
   ) {
     createProductOrder(input: $input, condition: $condition) {
-      product_id
-      order_id
+      id
       order {
-        order_id
         id
+        order_id
         user
         date
         total
@@ -111,7 +110,6 @@ export const createProductOrder = /* GraphQL */ `
         updatedAt
         customer
       }
-      id
       product {
         id
         title
@@ -125,6 +123,8 @@ export const createProductOrder = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      product_id
+      order_id
       createdAt
       updatedAt
       customer
@@ -137,11 +137,10 @@ export const updateProductOrder = /* GraphQL */ `
     $condition: ModelProductOrderConditionInput
   ) {
     updateProductOrder(input: $input, condition: $condition) {
-      product_id
-      order_id
+      id
       order {
-        order_id
         id
+        order_id
         user
         date
         total
@@ -152,7 +151,6 @@ export const updateProductOrder = /* GraphQL */ `
         updatedAt
         customer
       }
-      id
       product {
         id
         title
@@ -166,6 +164,8 @@ export const updateProductOrder = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      product_id
+      order_id
       createdAt
       updatedAt
       customer
@@ -178,11 +178,10 @@ export const deleteProductOrder = /* GraphQL */ `
     $condition: ModelProductOrderConditionInput
   ) {
     deleteProductOrder(input: $input, condition: $condition) {
-      product_id
-      order_id
+      id
       order {
-        order_id
         id
+        order_id
         user
         date
         total
@@ -193,7 +192,6 @@ export const deleteProductOrder = /* GraphQL */ `
         updatedAt
         customer
       }
-      id
       product {
         id
         title
@@ -207,6 +205,8 @@ export const deleteProductOrder = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      product_id
+      order_id
       createdAt
       updatedAt
       customer
@@ -219,16 +219,16 @@ export const createOrder = /* GraphQL */ `
     $condition: ModelOrderConditionInput
   ) {
     createOrder(input: $input, condition: $condition) {
-      order_id
       id
+      order_id
       user
       date
       total
       products {
         items {
+          id
           product_id
           order_id
-          id
           createdAt
           updatedAt
           customer
@@ -247,16 +247,16 @@ export const updateOrder = /* GraphQL */ `
     $condition: ModelOrderConditionInput
   ) {
     updateOrder(input: $input, condition: $condition) {
-      order_id
       id
+      order_id
       user
       date
       total
       products {
         items {
+          id
           product_id
           order_id
-          id
           createdAt
           updatedAt
           customer
@@ -275,16 +275,16 @@ export const deleteOrder = /* GraphQL */ `
     $condition: ModelOrderConditionInput
   ) {
     deleteOrder(input: $input, condition: $condition) {
-      order_id
       id
+      order_id
       user
       date
       total
       products {
         items {
+          id
           product_id
           order_id
-          id
           createdAt
           updatedAt
           customer

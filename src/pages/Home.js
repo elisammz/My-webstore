@@ -5,16 +5,7 @@ import Hero from "../components/Hero";
 import { ProductContext } from "../context/products";
 
 const Home = () => {
-  const { featured } = useContext(ProductContext);
-  if (!featured.length) {
-    return <h3>No Featured Products</h3>;
-  } else {
-    return (
-      <>
-        <Hero />
-      </>
-    );
-  }
+  <Hero />;
 };
 
 export default Home;

@@ -1,9 +1,12 @@
 type Product
-  @model(subscriptions: null)
+  @model(subscriptions: { level: off })
   @auth(
     rules: [
-      # allow admins to create, update and delete products
-      { allow: groups, groups: ["Admin"] }
+      {
+        allow: groups
+        groups: ["Admin"]
+        operations: [create, update, read, delete]
+      }
       # allow all authenticated users to view products
       { allow: private, operations: [read] }
       # allow all guest users (not authenticated) to view products
@@ -16,39 +19,37 @@ type Product
   image: String
   featured: Boolean
   price: Float
-
   orders: [ProductOrder] @hasMany(indexName: "byProduct", fields: ["id"])
 }
 
-type ProductOrder @model(subscriptions: { level: off }) {
+type ProductOrder
+  @model(queries: null, subscriptions: { level: off })
+  @auth(
+    rules: [
+      # allow admins to create productorders for customers by using customer email in lambda
+      { allow: owner, identityClaim: "email", ownerField: "customer" }
+      { allow: groups, groups: ["Admin"], operations: [create, update, read] }
+    ]
+  ) {
+  id: ID!
+  order: Order @hasOne(fields: ["order_id"])
+  product: Product @hasOne(fields: ["product_id"])
   product_id: ID! @index(name: "byProduct", sortKeyFields: ["order_id"])
   order_id: ID! @index(name: "byOrder", sortKeyFields: ["product_id"])
-
-  order: Order
-    @hasOne(fields: ["order_id"])
-    @auth(
-      rules: [
-        # allow admins to create productorders for customers by using customer email in lambda
-        { allow: owner, identityClaim: "email", ownerField: "customer" }
-        { allow: groups, groups: ["Admin"] }
-      ]
-    )
-  id: ID!
-  product: Product @hasOne(fields: ["product_id"])
 }
 
-type Order @model(subscriptions: { level: off }) {
-  order_id: ID!
-    @index(name: "byUser", sortKeyFields: ["user"])
-    @auth(
-      rules: [
-        # only owner can see his orders
-        { allow: owner, identityClaim: "email", ownerField: "customer" }
-        # allow admins to view orders
-        { allow: groups, groups: ["Admin"] }
-      ]
-    )
+type Order
+  @model(subscriptions: { level: off })
+  @auth(
+    rules: [
+      # only owner can see his orders
+      { allow: owner, identityClaim: "email", ownerField: "customer" }
+      # allow admins to view orders
+      { allow: groups, groups: ["Admin"], operations: [create, update, read] }
+    ]
+  ) {
   id: ID!
+  order_id: ID! @index(name: "byUser", sortKeyFields: ["user"])
   user: String!
   date: String
   total: Float

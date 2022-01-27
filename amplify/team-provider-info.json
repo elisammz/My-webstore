@@ -1,29 +1,29 @@
 {
-  "prod": {
+  "production": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-mywebstore-prod-204501-authRole",
-      "UnauthRoleArn": "arn:aws:iam::302038264747:role/amplify-mywebstore-prod-204501-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::302038264747:role/amplify-mywebstore-prod-204501-authRole",
+      "AuthRoleName": "amplify-mywebstore-production-205101-authRole",
+      "UnauthRoleArn": "arn:aws:iam::302038264747:role/amplify-mywebstore-production-205101-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::302038264747:role/amplify-mywebstore-production-205101-authRole",
       "Region": "ap-northeast-1",
-      "DeploymentBucketName": "amplify-mywebstore-prod-204501-deployment",
-      "UnauthRoleName": "amplify-mywebstore-prod-204501-unauthRole",
-      "StackName": "amplify-mywebstore-prod-204501",
-      "StackId": "arn:aws:cloudformation:ap-northeast-1:302038264747:stack/amplify-mywebstore-prod-204501/93895840-7aaf-11ec-82fb-0ea30bf5e6c3",
-      "AmplifyAppId": "d6dgv6t3qdgza"
+      "DeploymentBucketName": "amplify-mywebstore-production-205101-deployment",
+      "UnauthRoleName": "amplify-mywebstore-production-205101-unauthRole",
+      "StackName": "amplify-mywebstore-production-205101",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:302038264747:stack/amplify-mywebstore-production-205101/42a51390-7e9e-11ec-9453-0eadce3630a1",
+      "AmplifyAppId": "d2xf1h7ifl7h8w"
     },
     "categories": {
       "auth": {
-        "mywebstoreb1e60199": {},
+        "mywebstored5a2b721": {},
         "true": {}
       },
       "function": {
-        "createOrder": {
-          "deploymentBucketName": "amplify-mywebstore-prod-204501-deployment",
-          "s3Key": "amplify-builds/createOrder-544b5935385733494545-build.zip"
-        },
         "processPayment": {
-          "deploymentBucketName": "amplify-mywebstore-prod-204501-deployment",
-          "s3Key": "amplify-builds/processPayment-554e34364337656a324c-build.zip"
+          "deploymentBucketName": "amplify-mywebstore-production-205101-deployment",
+          "s3Key": "amplify-builds/processPayment-416b4f6263307a2b4149-build.zip"
+        },
+        "createOrder": {
+          "deploymentBucketName": "amplify-mywebstore-production-205101-deployment",
+          "s3Key": "amplify-builds/createOrder-44684166563247534b50-build.zip"
         }
       }
     }

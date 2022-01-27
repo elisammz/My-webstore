@@ -1,5 +1,5 @@
 
-type Product @aws_api_key @aws_cognito_user_pools {
+type Product @aws_cognito_user_pools @aws_api_key {
   id: ID!
   title: String!
   description: String
@@ -11,20 +11,20 @@ type Product @aws_api_key @aws_cognito_user_pools {
   updatedAt: AWSDateTime!
 }
 
-type ProductOrder {
+type ProductOrder @aws_cognito_user_pools {
+  id: ID!
+  order: Order
+  product: Product
   product_id: ID!
   order_id: ID!
-  order: Order
-  id: ID!
-  product: Product
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
   customer: String
 }
 
-type Order {
-  order_id: ID!
+type Order @aws_cognito_user_pools {
   id: ID!
+  order_id: ID!
   user: String!
   date: String
   total: Float
@@ -36,15 +36,15 @@ type Order {
 
 type Mutation {
   processOrder(input: ProcessOrderInput!): OrderStatus
-  createProduct(input: CreateProductInput!, condition: ModelProductConditionInput): Product
-  updateProduct(input: UpdateProductInput!, condition: ModelProductConditionInput): Product
-  deleteProduct(input: DeleteProductInput!, condition: ModelProductConditionInput): Product
-  createProductOrder(input: CreateProductOrderInput!, condition: ModelProductOrderConditionInput): ProductOrder
-  updateProductOrder(input: UpdateProductOrderInput!, condition: ModelProductOrderConditionInput): ProductOrder
-  deleteProductOrder(input: DeleteProductOrderInput!, condition: ModelProductOrderConditionInput): ProductOrder
-  createOrder(input: CreateOrderInput!, condition: ModelOrderConditionInput): Order
-  updateOrder(input: UpdateOrderInput!, condition: ModelOrderConditionInput): Order
-  deleteOrder(input: DeleteOrderInput!, condition: ModelOrderConditionInput): Order
+  createProduct(input: CreateProductInput!, condition: ModelProductConditionInput): Product @aws_cognito_user_pools
+  updateProduct(input: UpdateProductInput!, condition: ModelProductConditionInput): Product @aws_cognito_user_pools
+  deleteProduct(input: DeleteProductInput!, condition: ModelProductConditionInput): Product @aws_cognito_user_pools
+  createProductOrder(input: CreateProductOrderInput!, condition: ModelProductOrderConditionInput): ProductOrder @aws_cognito_user_pools
+  updateProductOrder(input: UpdateProductOrderInput!, condition: ModelProductOrderConditionInput): ProductOrder @aws_cognito_user_pools
+  deleteProductOrder(input: DeleteProductOrderInput!, condition: ModelProductOrderConditionInput): ProductOrder @aws_cognito_user_pools
+  createOrder(input: CreateOrderInput!, condition: ModelOrderConditionInput): Order @aws_cognito_user_pools
+  updateOrder(input: UpdateOrderInput!, condition: ModelOrderConditionInput): Order @aws_cognito_user_pools
+  deleteOrder(input: DeleteOrderInput!, condition: ModelOrderConditionInput): Order @aws_cognito_user_pools
 }
 
 enum OrderStatus {
@@ -177,12 +177,10 @@ input ModelProductFilterInput {
 }
 
 type Query {
-  getProductOrder(id: ID!): ProductOrder
-  listProductOrders(filter: ModelProductOrderFilterInput, limit: Int, nextToken: String): ModelProductOrderConnection
-  getOrder(id: ID!): Order
-  listOrders(filter: ModelOrderFilterInput, limit: Int, nextToken: String): ModelOrderConnection
   getProduct(id: ID!): Product @aws_api_key @aws_cognito_user_pools
   listProducts(filter: ModelProductFilterInput, limit: Int, nextToken: String): ModelProductConnection @aws_api_key @aws_cognito_user_pools
+  getOrder(id: ID!): Order @aws_cognito_user_pools
+  listOrders(filter: ModelOrderFilterInput, limit: Int, nextToken: String): ModelOrderConnection @aws_cognito_user_pools
 }
 
 input ModelProductConditionInput {
@@ -218,20 +216,6 @@ input DeleteProductInput {
   id: ID!
 }
 
-type ModelProductOrderConnection @aws_api_key @aws_cognito_user_pools {
-  items: [ProductOrder]!
-  nextToken: String
-}
-
-input ModelProductOrderFilterInput {
-  product_id: ModelIDInput
-  order_id: ModelIDInput
-  id: ModelIDInput
-  and: [ModelProductOrderFilterInput]
-  or: [ModelProductOrderFilterInput]
-  not: ModelProductOrderFilterInput
-}
-
 input ModelProductOrderConditionInput {
   product_id: ModelIDInput
   order_id: ModelIDInput
@@ -241,29 +225,29 @@ input ModelProductOrderConditionInput {
 }
 
 input CreateProductOrderInput {
+  id: ID
   product_id: ID!
   order_id: ID!
-  id: ID
 }
 
 input UpdateProductOrderInput {
+  id: ID!
   product_id: ID
   order_id: ID
-  id: ID!
 }
 
 input DeleteProductOrderInput {
   id: ID!
 }
 
-type ModelOrderConnection {
+type ModelOrderConnection @aws_cognito_user_pools {
   items: [Order]!
   nextToken: String
 }
 
 input ModelOrderFilterInput {
-  order_id: ModelIDInput
   id: ModelIDInput
+  order_id: ModelIDInput
   user: ModelStringInput
   date: ModelStringInput
   total: ModelFloatInput
@@ -283,16 +267,16 @@ input ModelOrderConditionInput {
 }
 
 input CreateOrderInput {
-  order_id: ID!
   id: ID
+  order_id: ID!
   user: String!
   date: String
   total: Float
 }
 
 input UpdateOrderInput {
-  order_id: ID
   id: ID!
+  order_id: ID
   user: String
   date: String
   total: Float
@@ -320,5 +304,19 @@ input ModelStringKeyConditionInput {
   gt: String
   between: [String]
   beginsWith: String
+}
+
+type ModelProductOrderConnection @aws_cognito_user_pools @aws_api_key {
+  items: [ProductOrder]!
+  nextToken: String
+}
+
+input ModelProductOrderFilterInput {
+  id: ModelIDInput
+  product_id: ModelIDInput
+  order_id: ModelIDInput
+  and: [ModelProductOrderFilterInput]
+  or: [ModelProductOrderFilterInput]
+  not: ModelProductOrderFilterInput
 }
 

@@ -27,7 +27,13 @@ const Admin = () => {
       await API.graphql(
         graphqlOperation(createProduct, { input: productDetails })
       );
-      setProductDetails({ title: "", description: "", image: "", price: "" });
+      setProductDetails({
+        title: "",
+        description: "",
+        image: "",
+        author: "",
+        price: "",
+      });
     } catch (err) {
       console.log("error creating todo:", err);
     }
@@ -104,7 +110,7 @@ const Admin = () => {
                   <textarea
                     name="description"
                     type="text"
-                    rows="8"
+                    rows="5"
                     placeholder="Type the description of the product"
                     onChange={(e) =>
                       setProductDetails({
@@ -130,6 +136,22 @@ const Admin = () => {
                       })
                     }
                     required
+                  />
+                </p>
+              </div>
+              <div className="featured-form">
+                <p>
+                  <label>Do you want this product to be featured?</label>
+                  <input
+                    type="checkbox"
+                    className="featured-checkbox"
+                    checked={productDetails.featured}
+                    onChange={() =>
+                      setProductDetails({
+                        ...productDetails,
+                        featured: !productDetails.featured,
+                      })
+                    }
                   />
                 </p>
               </div>

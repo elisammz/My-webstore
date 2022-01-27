@@ -146,22 +146,7 @@
             ]
           ]
         },
-        "ResponseMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Order.products.auth.1.res.vtl"
-            ]
-          ]
-        }
+        "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
     "OrderProductsDataResolverFnOrderProductsDataResolverFnAppSyncFunction391A8D5E": {
@@ -399,22 +384,7 @@
             ]
           ]
         },
-        "ResponseMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/ProductOrder.product.auth.1.res.vtl"
-            ]
-          ]
-        }
+        "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
     "ProductOrderProductDataResolverFnProductOrderProductDataResolverFnAppSyncFunctionEACB8282": {

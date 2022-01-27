@@ -1,7 +1,7 @@
 {
-  "resourceName": "ProductsImages",
-  "policyUUID": "15c19650",
-  "bucketName": "mywebstoreb6827106c6174062bf0100c8d1f69d90",
+  "resourceName": "productImages",
+  "policyUUID": "8d53dbeb",
+  "bucketName": "mywebstore8f898d3b41764c8a99ea10ef78987a83",
   "storageAccess": "authAndGuest",
   "guestAccess": [
     "READ"

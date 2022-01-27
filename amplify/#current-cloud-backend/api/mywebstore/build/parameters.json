@@ -4,10 +4,10 @@
     "DynamoDBEnableServerSideEncryption": false,
     "AuthCognitoUserPoolId": {
         "Fn::GetAtt": [
-            "authmywebstoreb1e60199",
+            "authmywebstored5a2b721",
             "Outputs.UserPoolId"
         ]
     },
-    "S3DeploymentBucket": "amplify-mywebstore-prod-204501-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/2232f02709174e94ebc068b26aace79d390cfa3d"
+    "S3DeploymentBucket": "amplify-mywebstore-production-205101-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/2ead3546c7e85d6bc56a2353df92b679178ffe7e"
 }

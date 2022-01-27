@@ -1,6 +1,6 @@
 {
   "auth": {
-    "mywebstoreb1e60199": {
+    "mywebstored5a2b721": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -26,7 +26,7 @@
     }
   },
   "storage": {
-    "ProductsImages": {
+    "productImages": {
       "service": "S3",
       "providerPlugin": "awscloudformation",
       "dependsOn": []
@@ -51,18 +51,16 @@
       "output": {
         "authConfig": {
           "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authmywebstoreb1e60199"
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
             }
           },
           "additionalAuthenticationProviders": [
             {
-              "authenticationType": "API_KEY",
-              "apiKeyConfig": {
-                "apiKeyExpirationDays": 365,
-                "apiKeyExpirationDate": "2023-01-21T12:36:03.465Z",
-                "description": "Guest user access to products"
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authmywebstored5a2b721"
               }
             }
           ]

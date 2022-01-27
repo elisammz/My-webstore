@@ -1,5 +1,5 @@
 {
-  "prod": {
+  "production": {
     "configLevel": "project",
     "useProfile": true,
     "profileName": "webstore-profile"

@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
     "auth": {
-        "mywebstoreb1e60199": {
+        "mywebstored5a2b721": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -11,7 +11,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "storage": {
-        "ProductsImages": {
+        "productImages": {
             "BucketName": "string",
             "Region": "string"
         }
