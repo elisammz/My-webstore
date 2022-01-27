@@ -9,5 +9,5 @@
         ]
     },
     "S3DeploymentBucket": "amplify-mywebstore-production-205101-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/2ead3546c7e85d6bc56a2353df92b679178ffe7e"
+    "S3DeploymentRootKey": "amplify-appsync-files/caf766cad9d5d3f9c07233009058efbdc020564e"
 }

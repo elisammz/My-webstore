@@ -1,6 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// Amplify
+import { Routes, Route } from "react-router-dom";
 import Amplify from "aws-amplify";
 
 // Pages
@@ -19,14 +18,22 @@ import Header from "./components/Header";
 import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
 
-const App = () => {
+function App() {
   return (
-    <Router>
+    <>
       <Header />
-
-      <Admin />
-    </Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </>
   );
-};
+}
 
 export default App;

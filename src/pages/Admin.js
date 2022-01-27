@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { API, graphqlOperation, Storage } from "aws-amplify";
 import { AmplifyAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
-import { createProduct } from "../api/mutations";
+import { createProduct } from "../api/mutations.js";
 import config from "../aws-exports";
 import "bootstrap/dist/css/bootstrap.min.css";
 

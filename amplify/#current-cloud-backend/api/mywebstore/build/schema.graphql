@@ -179,6 +179,8 @@ input ModelProductFilterInput {
 type Query {
   getProduct(id: ID!): Product @aws_api_key @aws_cognito_user_pools
   listProducts(filter: ModelProductFilterInput, limit: Int, nextToken: String): ModelProductConnection @aws_api_key @aws_cognito_user_pools
+  getProductOrder(id: ID!): ProductOrder @aws_cognito_user_pools
+  listProductOrders(filter: ModelProductOrderFilterInput, limit: Int, nextToken: String): ModelProductOrderConnection @aws_cognito_user_pools
   getOrder(id: ID!): Order @aws_cognito_user_pools
   listOrders(filter: ModelOrderFilterInput, limit: Int, nextToken: String): ModelOrderConnection @aws_cognito_user_pools
 }
@@ -214,6 +216,20 @@ input UpdateProductInput {
 
 input DeleteProductInput {
   id: ID!
+}
+
+type ModelProductOrderConnection @aws_cognito_user_pools @aws_api_key {
+  items: [ProductOrder]!
+  nextToken: String
+}
+
+input ModelProductOrderFilterInput {
+  id: ModelIDInput
+  product_id: ModelIDInput
+  order_id: ModelIDInput
+  and: [ModelProductOrderFilterInput]
+  or: [ModelProductOrderFilterInput]
+  not: ModelProductOrderFilterInput
 }
 
 input ModelProductOrderConditionInput {
@@ -304,19 +320,5 @@ input ModelStringKeyConditionInput {
   gt: String
   between: [String]
   beginsWith: String
-}
-
-type ModelProductOrderConnection @aws_cognito_user_pools @aws_api_key {
-  items: [ProductOrder]!
-  nextToken: String
-}
-
-input ModelProductOrderFilterInput {
-  id: ModelIDInput
-  product_id: ModelIDInput
-  order_id: ModelIDInput
-  and: [ModelProductOrderFilterInput]
-  or: [ModelProductOrderFilterInput]
-  not: ModelProductOrderFilterInput
 }
 

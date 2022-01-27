@@ -4,8 +4,11 @@ import Hero from "../components/Hero";
 
 import { ProductContext } from "../context/products";
 
-const Home = () => {
-  <Hero />;
-};
+// Components
+import Header from "../components/Header";
+
+function Home() {
+  return <Hero />;
+}
 
 export default Home;

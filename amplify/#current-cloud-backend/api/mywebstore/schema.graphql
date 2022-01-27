@@ -23,7 +23,7 @@ type Product
 }
 
 type ProductOrder
-  @model(queries: null, subscriptions: { level: off })
+  @model(subscriptions: { level: off })
   @auth(
     rules: [
       # allow admins to create productorders for customers by using customer email in lambda
@@ -45,7 +45,11 @@ type Order
       # only owner can see his orders
       { allow: owner, identityClaim: "email", ownerField: "customer" }
       # allow admins to view orders
-      { allow: groups, groups: ["Admin"], operations: [create, update, read] }
+      {
+        allow: groups
+        groups: ["Admin"]
+        operations: [create, update, read, delete]
+      }
     ]
   ) {
   id: ID!
