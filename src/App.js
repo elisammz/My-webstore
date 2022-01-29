@@ -12,7 +12,6 @@ import ProductDetails from "./pages/ProductDetails";
 import Admin from "./pages/Admin";
 
 // Components
-import Header from "./components/Header";
 
 // Amplify Configurations
 import awsExports from "./aws-exports";
@@ -21,7 +20,6 @@ Amplify.configure(awsExports);
 function App() {
   return (
     <>
-      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />

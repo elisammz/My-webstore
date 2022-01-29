@@ -1,14 +1,18 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import Hero from "../components/Hero";
 
 import { ProductContext } from "../context/products";
 
 // Components
-import Header from "../components/Header";
+import { Navbar } from "../components/styles/Navbar.styled";
+import Hero from "../components/styles/Hero.styled";
 
 function Home() {
-  return <Hero />;
+  return (
+    <div>
+      <Navbar />
+      <Hero />
+    </div>
+  );
 }
 
 export default Home;
