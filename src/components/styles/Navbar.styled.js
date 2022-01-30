@@ -5,18 +5,18 @@ import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const NavbarListed = styled.ul`
-  display: flex;
   justify-content: center;
   text-decoration: none;
+  background-color: white;
 `;
 const linkStyle = {
-  color: "grey",
+  color: "#9A9AA1",
 };
 
 function NavBar() {
   return (
     <NavbarListed>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
           <Link to="/home" style={linkStyle}>
             Genealogy

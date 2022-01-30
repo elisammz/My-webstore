@@ -7,8 +7,6 @@ import config from "../aws-exports";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Components
-import Navbar from "../components/styles/Navbar.styled";
-import Hero from "../components/styles/Hero.styled";
 
 const {
   aws_user_files_s3_bucket_region: region,
@@ -68,7 +66,6 @@ const Admin = () => {
   return (
     <section className="admin-container text-primary">
       <AmplifyAuthenticator>
-        <Navbar />
         <div>
           <header className="admin-header">
             <h3>Add New Product in this page as Admin user</h3>
