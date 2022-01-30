@@ -1,16 +1,16 @@
-import { render } from "@testing-library/react";
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+
+//Bootstrap components
+import { Navbar, Nav, Container } from "react-bootstrap";
 
 const NavbarListed = styled.ul`
   justify-content: center;
   text-decoration: none;
-  background-color: white;
-  padding: 20px 0;
-  margin: 0;
+  background-color: #f8f9fa;
+  padding: 10px 0;
+  margin: 0 auto;
 
   .styledLink {
     color: #9a9aa1;
@@ -29,7 +29,7 @@ const NavbarListed = styled.ul`
 function NavBar() {
   return (
     <NavbarListed>
-      <Navbar expand="lg">
+      <Navbar bg="light" expand="lg">
         <Container>
           <Link to="/home" className="styledLink">
             Genealogy
