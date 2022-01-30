@@ -2,64 +2,57 @@ import { render } from "@testing-library/react";
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const NavbarListed = styled.ul`
   justify-content: center;
   text-decoration: none;
   background-color: white;
+  padding: 20px 0;
+  margin: 0;
+
+  .styledLink {
+    color: #9a9aa1;
+    text-decoration: none;
+    display: inline;
+    list-style: none;
+    line-height: 40px;
+    margin-left: 15px;
+  }
+
+  .styledLink:hover {
+    color: #546fff;
+  }
 `;
-const linkStyle = {
-  color: "#9A9AA1",
-};
 
 function NavBar() {
   return (
     <NavbarListed>
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
-          <Link to="/home" style={linkStyle}>
+      <Navbar expand="lg">
+        <Container>
+          <Link to="/home" className="styledLink">
             Genealogy
           </Link>
-          <button
-            class="navbar-toggler collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <Link to="/home" style={linkStyle}>
-                  Home
-                </Link>
-              </li>
-
-              <li class="nav-item">
-                <Link to="/products" style={linkStyle}>
-                  Products
-                </Link>
-              </li>
-
-              <li class="nav-item">
-                <Link to="/cart" style={linkStyle}>
-                  Cart
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link to="/checkout" style={linkStyle}>
-                  Checkout
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Link to="/home" className="styledLink">
+                Home
+              </Link>
+              <Link to="/products" className="styledLink">
+                Products
+              </Link>
+              <Link to="/cart" className="styledLink">
+                Cart
+              </Link>
+              <Link to="/checkout" className="styledLink">
+                Checkout
+              </Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </NavbarListed>
   );
 }

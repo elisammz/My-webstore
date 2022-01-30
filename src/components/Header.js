@@ -18,7 +18,7 @@ export default function Header() {
       <Navbar />
       <StyledHeader className=" flex-lg-row">
         <h1>Technology that saves lives</h1>
-        <h2>Next generation of algorithms to predict genotypes accurately</h2>
+        <h2>Next generation of algorithms for accurate genotype prediction</h2>
         <Button>
           <Link to="/products" style={linkStyle}>
             View products
