@@ -2,11 +2,39 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { API, graphqlOperation, Storage } from "aws-amplify";
 import { AmplifyAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
-import { createProduct } from "../api/mutations.js";
+import styled from "styled-components";
+import { createProduct } from "../api/mutations";
 import config from "../aws-exports";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 // Components
+import GlobalStyles from "../components/styles/Global";
+import Navbar from "../components/styles/Navbar.styled";
+import Button from "../components/styles/Button.styled";
+
+//Styled components
+const StyledContainer = styled.div`
+  background-color: white;
+  color: #21252a;
+  width: 80%;
+  margin: 20px auto;
+  padding 10px;
+  border-style: solid;
+  border: 1px #c7c7c7 solid;
+
+
+  .admin-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 3rem 0;
+    font-size: 14px;
+  }
+
+  .signout-btn{
+    padding: 15px 200px;
+    cursor: pointer;
+  }
+`;
 
 const {
   aws_user_files_s3_bucket_region: region,
@@ -25,15 +53,17 @@ const Admin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (!productDetails.title || !productDetails.price) return;
-      await API.graphql(
-        graphqlOperation(createProduct, { input: productDetails })
-      );
+      if (!productDetails.title || !productDetails.price)
+        return await API.graphql({
+          query: createProduct,
+          variables: { input: productDetails },
+          authMode: "AMAZON_COGNITO_USER_POOLS",
+        });
+      console.log(productDetails);
       setProductDetails({
         title: "",
         description: "",
         image: "",
-        author: "",
         price: "",
       });
     } catch (err) {
@@ -58,20 +88,23 @@ const Admin = () => {
       const image = await Storage.get(key, { level: "public" });
       setImage(image);
       setProductDetails({ ...productDetails, image: url });
+      console.log("image uploaded");
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <section className="admin-container text-primary">
+    <section className="admin-container">
       <AmplifyAuthenticator>
-        <div>
+        <GlobalStyles />
+        <Navbar />
+        <StyledContainer>
           <header className="admin-header">
-            <h3>Add New Product in this page as Admin user</h3>
+            <h3>Add New Product</h3>
           </header>
           <form className="admin-form" onSubmit={handleSubmit}>
-            <div className="add-product-image">
+            <div className="image-form">
               {image ? (
                 <img className="image-preview" src={image} alt="" />
               ) : (
@@ -89,10 +122,9 @@ const Admin = () => {
                 </p>
 
                 <p>
-                  {" "}
                   <input
-                    name="email"
-                    type="title"
+                    name="title"
+                    type="text"
                     placeholder="Type the title"
                     onChange={(e) =>
                       setProductDetails({
@@ -109,7 +141,7 @@ const Admin = () => {
                   <label htmlFor="description">Description</label>
                 </p>
                 <p>
-                  <textarea
+                  <input
                     name="description"
                     type="text"
                     rows="5"
@@ -143,7 +175,7 @@ const Admin = () => {
               </div>
               <div className="featured-form">
                 <p>
-                  <label>Do you want this product to be featured?</label>
+                  <label>Is this a featured product? </label>{" "}
                   <input
                     type="checkbox"
                     className="featured-checkbox"
@@ -158,14 +190,14 @@ const Admin = () => {
                 </p>
               </div>
               <div className="submit-form">
-                <button className="btn" type="submit">
-                  Submit
-                </button>
+                <Button type="submit">Submit</Button>
               </div>
             </div>
           </form>
-        </div>
-        <AmplifySignOut></AmplifySignOut>
+          <div className="signout-btn">
+            <AmplifySignOut></AmplifySignOut>
+          </div>
+        </StyledContainer>
       </AmplifyAuthenticator>
     </section>
   );

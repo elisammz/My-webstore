@@ -4,13 +4,13 @@ import { ProductContext } from "../context/products";
 
 // Components
 import GlobalStyles from "../components/styles/Global";
-import Header from "../components/Header";
+import Hero from "../components/Hero";
 
 function Home() {
   return (
     <div>
       <GlobalStyles />
-      <Header />
+      <Hero />
     </div>
   );
 }

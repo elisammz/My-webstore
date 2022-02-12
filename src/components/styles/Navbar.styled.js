@@ -5,7 +5,7 @@ import styled from "styled-components";
 //Bootstrap components
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-const NavbarListed = styled.ul`
+const StyledNavbar = styled.ul`
   justify-content: center;
   text-decoration: none;
   background-color: #f8f9fa;
@@ -28,7 +28,7 @@ const NavbarListed = styled.ul`
 
 function NavBar() {
   return (
-    <NavbarListed>
+    <StyledNavbar>
       <Navbar bg="light" expand="lg">
         <Container>
           <Link to="/home" className="styledLink">
@@ -53,7 +53,7 @@ function NavBar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </NavbarListed>
+    </StyledNavbar>
   );
 }
 export default NavBar;
