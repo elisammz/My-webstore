@@ -1,19 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react/cjs/react.development";
 import { ProductContext } from "../context/products";
+
+// Components
+import GlobalStyles from "../components/styles/Global";
+import Navbar from "../components/styles/Navbar.styled";
 
 const Products = () => {
   const { products } = useContext(ProductContext);
 
   if (!products.length) {
-    return <h3>No Products Available</h3>;
+    return (
+      <>
+        <GlobalStyles />
+        <Navbar />
+        <h2>No Products Available 🛠</h2>
+      </>
+    );
   }
 
   return (
-    <section className="products">
-      <h3>Products are Now Available</h3>;
-    </section>
+    <>
+      <GlobalStyles />
+      <Navbar />
+      <section className="products">
+        {products.map(({ image: image, title, id }) => (
+          <div key={id} className="featured-product">
+            <div className="product-image">
+              <img src={image} alt={title} />
+            </div>
+            <Link className="btn product-link" to={`products/${id}`}>
+              Details
+            </Link>
+          </div>
+        ))}
+      </section>
+    </>
   );
 };
 

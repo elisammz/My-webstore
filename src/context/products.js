@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { API, graphqlOperation } from "aws-amplify";
+import React, { useState, useEffect, createContext } from "react";
+import { API } from "aws-amplify";
 import { v4 as uuidv4 } from "uuid";
 import { listProducts } from "../api/queries";
 import { processOrder } from "../api/mutations";
 
-const ProductContext = React.createContext();
+export const ProductContext = createContext({ products: [], featured: [] });
 
-const ProductProvider = ({ children }) => {
+export const ProductContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [featured, setFeatured] = useState([]);
   const [loading, setLoading] = useState([]);
@@ -21,7 +21,7 @@ const ProductProvider = ({ children }) => {
       ...orderDetails,
     };
     try {
-      await API.graphql(graphqlOperation(processOrder, { input: payload }));
+      await API.graphql({ query: processOrder, variables: { input: payload } });
     } catch (err) {
       console.log(err);
     }
@@ -34,9 +34,8 @@ const ProductProvider = ({ children }) => {
         query: listProducts,
         authMode: "API_KEY",
       });
-
       const products = data.listProducts.items;
-      const featured = products.filter((book) => {
+      const featured = products.filter((product) => {
         return !!products.featured;
       });
       setProducts(products);
@@ -53,5 +52,3 @@ const ProductProvider = ({ children }) => {
     </ProductContext.Provider>
   );
 };
-
-export { ProductContext, ProductProvider };

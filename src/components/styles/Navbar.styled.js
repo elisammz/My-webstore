@@ -31,13 +31,13 @@ function NavBar() {
     <StyledNavbar>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Link to="/home" className="styledLink">
+          <Link to="/" className="styledLink">
             Genealogy
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Link to="/home" className="styledLink">
+              <Link to="/" className="styledLink">
                 Home
               </Link>
               <Link to="/products" className="styledLink">

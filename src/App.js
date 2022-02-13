@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Amplify from "aws-amplify";
+import ProductContextProvider from "./context/products";
 
 // Pages
 import Home from "./pages/Home";

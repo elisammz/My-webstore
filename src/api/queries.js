@@ -40,9 +40,6 @@ export const listProducts = /* GraphQL */ `
         image
         featured
         price
-        orders {
-          nextToken
-        }
         createdAt
         updatedAt
       }
